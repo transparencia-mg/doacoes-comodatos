@@ -47,7 +47,7 @@ resources:
           title: Doador Comandante
         - name: objeto_descritivo
           type: string
-          description: Bem móvel ou serviço efetivamente ofertado à Administração Pública. Deve ser descrito com precisão: marca, modelo, série, estado de conservação, quantidade e demais características técnicas.
+          description: Bem móvel ou serviço efetivamente ofertado à Administração Pública. Deve ser descrito com precisão, ou seja, deve constar a marca, modelo, série, estado de conservação, quantidade e demais características técnicas.
           title: Objeto Descritivo
         - name: quantidade_objeto
           type: string
