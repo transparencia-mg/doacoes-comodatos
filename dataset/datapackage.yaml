@@ -1,0 +1,44 @@
+name: doacoes-comodatos
+owner_org: secretaria-de-estado-de-casa-civil
+profile: data-package
+resources:
+  - description: Insira a descrição/explicação detalhada deste recurso.
+    dialect:
+      delimiter: ;
+    encoding: utf-8-sig
+    format: csv
+    hashing: md5
+    name: doacoes_e_comodatos
+    path: data/Doacoes_e_Comodatos.csv
+    profile: tabular-data-resource
+    schema:
+      fields:
+        - name: tipo_instrumento
+          type: string
+        - name: ano_instrumento
+          type: string
+        - name: mes_instrumento
+          type: integer
+        - name: categoria_valor
+          type: string
+        - name: orgao_recebedor
+          type: string
+        - name: codigo_orgao_recebedor
+          type: string
+        - name: natureza_doador
+          type: string
+        - name: doador_comodante
+          type: string
+        - name: objeto_descritivo
+          type: string
+        - name: quantidade_objeto
+          type: string
+        - name: vigencia
+          type: string
+        - name: processo_sei
+          type: string
+        - name: recurso_tjmg_ou_mpmg
+          type: string
+    scheme: file
+    title: Insira um título humanamente legível para este recurso.
+title: Doacoes comodatos
