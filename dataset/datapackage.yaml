@@ -15,7 +15,6 @@ resources:
       fields:
         - name: tipo_instrumento
           type: string
-          description:
           title: Tipo de Instrumento
         - name: ano_instrumento
           title: Ano
@@ -27,7 +26,6 @@ resources:
           title: Mês
         - name: categoria_valor
           type: string
-          description:
           title: Categoria do Valor
         - name: orgao_recebedor
           type: string
@@ -39,7 +37,6 @@ resources:
           title: Código do Órgao Recebedor
         - name: natureza_doador
           type: string
-          description:
           title: Natureza do Doador
         - name: doador_comodante
           type: string
@@ -63,7 +60,6 @@ resources:
           title: Processo SEI
         - name: recurso_tjmg_ou_mpmg
           type: string
-          description:
           title: 
     scheme: file
     title:  Doações e comodatos - Selo Amigo de Minas Gerais
