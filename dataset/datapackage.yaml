@@ -60,7 +60,7 @@ resources:
           title: Processo SEI
         - name: recurso_tjmg_ou_mpmg
           type: string
-          title: 
+          title: Recurso TJMG ou MPMG
     scheme: file
     title:  Doações e comodatos - Selo Amigo de Minas Gerais
 title:  Doações e comodatos - Selo Amigo de Minas Gerais
