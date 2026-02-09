@@ -4,7 +4,7 @@
   "profile": "data-package",
   "resources": [
     {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "description": "Listas de doações e comodatos recebidos pelo Governo de Minas Gerais, conforme os arts. 26 e 27 do Decreto nº 48.444/2022 a partir de 2025.",
       "dialect": {
         "delimiter": ";"
       },
@@ -18,61 +18,83 @@
         "fields": [
           {
             "name": "tipo_instrumento",
-            "type": "string"
+            "type": "string",
+            "title": "Tipo de Instrumento"
           },
           {
             "name": "ano_instrumento",
-            "type": "string"
+            "title": "Ano",
+            "type": "string",
+            "description": "Ano de publicação no Diário Oficial do Estado do ato que autorizou o recebimento de doação ou de bem em comodato"
           },
           {
             "name": "mes_instrumento",
-            "type": "integer"
+            "type": "integer",
+            "description": "Mês de publicação no Diário Oficial do Estado do ato que autorizou o recebimento de doação ou de bem em comodato.",
+            "title": "Mês"
           },
           {
             "name": "categoria_valor",
-            "type": "string"
+            "type": "string",
+            "title": "Categoria do Valor"
           },
           {
             "name": "orgao_recebedor",
-            "type": "string"
+            "type": "string",
+            "description": "Unidade da Administração Direta, Autárquica ou Fundacional que recebe a doação ou o comodato. No contexto do Decreto nº 48.628/2023, pode demandar orientação técnica da DCAP.",
+            "title": "Órgão Recebedor"
           },
           {
             "name": "codigo_orgao_recebedor",
-            "type": "string"
+            "type": "string",
+            "description": "Código da Unidade da Administração Direta, Autárquica ou Fundacional que recebe a doação ou o comodato.",
+            "title": "Código do Órgao Recebedor"
           },
           {
             "name": "natureza_doador",
-            "type": "string"
+            "type": "string",
+            "title": "Natureza do Doador"
           },
           {
             "name": "doador_comodante",
-            "type": "string"
+            "type": "string",
+            "description": "Nome da pessoa física ou jurídica que realiza a doação ou concede o comodato.",
+            "title": "Doador Comandante"
           },
           {
             "name": "objeto_descritivo",
-            "type": "string"
+            "type": "string",
+            "description": "Bem móvel ou serviço efetivamente ofertado à Administração Pública. Deve ser descrito com precisão, ou seja, deve constar a marca, modelo, série, estado de conservação, quantidade e demais características técnicas.",
+            "title": "Objeto Descritivo"
           },
           {
             "name": "quantidade_objeto",
-            "type": "string"
+            "type": "string",
+            "description": "Quantitativo, quando for o caso, do objeto da doação ou comodato.",
+            "title": "Quantidade de objeto"
           },
           {
             "name": "vigencia",
-            "type": "string"
+            "type": "string",
+            "description": "Vigência do Comodato",
+            "title": "Vigência"
           },
           {
             "name": "processo_sei",
-            "type": "string"
+            "type": "string",
+            "description": "Número do processo SEI do termo de doação ou comodato",
+            "title": "Processo SEI"
           },
           {
             "name": "recurso_tjmg_ou_mpmg",
-            "type": "string"
+            "type": "string",
+            "title": "Recurso TJMG ou MPMG"
           }
         ]
       },
       "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
+      "title": "Doações e comodatos - Selo Amigo de Minas Gerais"
     }
   ],
-  "title": "Doacoes comodatos"
+  "title": "Doações e comodatos - Selo Amigo de Minas Gerais"
 }
