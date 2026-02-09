@@ -1,0 +1,151 @@
+{
+  "version": "4.16.6",
+  "time": 0.036,
+  "errors": [],
+  "tasks": [
+    {
+      "resource": {
+        "description": "Insira a descrição/explicação detalhada deste recurso.",
+        "dialect": {
+          "delimiter": ";"
+        },
+        "encoding": "utf-8-sig",
+        "format": "csv",
+        "hashing": "md5",
+        "name": "doacoes_e_comodatos",
+        "path": "data/Doacoes_e_Comodatos.csv",
+        "profile": "tabular-data-resource",
+        "schema": {
+          "fields": [
+            {
+              "name": "tipo_instrumento",
+              "type": "string"
+            },
+            {
+              "name": "ano_instrumento",
+              "type": "string"
+            },
+            {
+              "name": "mes_instrumento",
+              "type": "integer"
+            },
+            {
+              "name": "categoria_valor",
+              "type": "string"
+            },
+            {
+              "name": "orgao_recebedor",
+              "type": "string"
+            },
+            {
+              "name": "codigo_orgao_recebedor",
+              "type": "string"
+            },
+            {
+              "name": "natureza_doador",
+              "type": "string"
+            },
+            {
+              "name": "doador_comodante",
+              "type": "string"
+            },
+            {
+              "name": "objeto_descritivo",
+              "type": "string"
+            },
+            {
+              "name": "quantidade_objeto",
+              "type": "string"
+            },
+            {
+              "name": "vigencia",
+              "type": "string"
+            },
+            {
+              "name": "processo_sei",
+              "type": "string"
+            },
+            {
+              "name": "recurso_tjmg_ou_mpmg",
+              "type": "string"
+            }
+          ]
+        },
+        "scheme": "file",
+        "title": "Insira um título humanamente legível para este recurso.",
+        "stats": {
+          "hash": "ced0e5a07b4f007938810ed8a65c7380",
+          "bytes": 156005,
+          "fields": 13,
+          "rows": 301
+        }
+      },
+      "time": 0.025,
+      "scope": [
+        "hash-count-error",
+        "byte-count-error",
+        "field-count-error",
+        "row-count-error",
+        "blank-header",
+        "extra-label",
+        "missing-label",
+        "blank-label",
+        "duplicate-label",
+        "incorrect-label",
+        "blank-row",
+        "primary-key-error",
+        "foreign-key-error",
+        "extra-cell",
+        "missing-cell",
+        "type-error",
+        "constraint-error",
+        "unique-error"
+      ],
+      "partial": false,
+      "errors": [
+        {
+          "cell": " ",
+          "fieldName": "mes_instrumento",
+          "fieldNumber": 3,
+          "fieldPosition": 3,
+          "cells": [
+            "Termo de Transferência de Bens Móveis TRANSF. 27/2025 - PCMG/SPGF/DCC/DOAÇÂO/CESSÃO      ",
+            "2025,0",
+            " ",
+            "Entre 100 K e 500 K",
+            "Polícia Civil de Minas Gerais - PCMG",
+            "1511,0",
+            "Privado ",
+            "Conselho Comunitário de Segurança Pública da 169 Companhia de Polícia Militar – CONSEP",
+            "01 - Automóvel marca CHEVROLET, modelo /S10 WT DD4A, cor PRETA , placa, TDK7B57, ano 24/25, chassi 9BG1481K0SC421861.                                                                                                                       01 -  Automóvel marca CHEVROLET, modelo /S10 WT DD4A, cor PRETA , placa, TDK7B54, ano 24/25, chassi9BG1481K0SC421739",
+            "2,0",
+            "Não se aplica",
+            "1510.01.0077321/2025-36",
+            "Sim"
+          ],
+          "rowNumber": 111,
+          "rowPosition": 112,
+          "code": "type-error",
+          "name": "Type Error",
+          "tags": [
+            "#table",
+            "#row",
+            "#cell"
+          ],
+          "note": "type is \"integer/default\"",
+          "message": "Type error in the cell \" \" in row \"112\" and field \"mes_instrumento\" at position \"3\": type is \"integer/default\"",
+          "description": "The value does not match the schema type and format for this field."
+        }
+      ],
+      "stats": {
+        "errors": 1
+      },
+      "valid": false
+    }
+  ],
+  "stats": {
+    "errors": 1,
+    "tasks": 1
+  },
+  "valid": false
+}
