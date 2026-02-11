@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.033,
+  "time": 0.038,
   "errors": [],
   "tasks": [
     {
@@ -20,7 +20,8 @@
             {
               "name": "tipo_instrumento",
               "type": "string",
-              "title": "Tipo de Instrumento"
+              "title": "Tipo de Instrumento",
+              "description": "Documento formal que oficializa atos, relações, direitos e obrigações, conferindo segurança jurídica às partes envolvidas na doação."
             },
             {
               "name": "ano_instrumento",
@@ -37,7 +38,8 @@
             {
               "name": "categoria_valor",
               "type": "string",
-              "title": "Categoria do Valor"
+              "title": "Categoria do Valor",
+              "description": "Faixa monetária na qual se enquadra o valor total da doação."
             },
             {
               "name": "orgao_recebedor",
@@ -54,7 +56,8 @@
             {
               "name": "natureza_doador",
               "type": "string",
-              "title": "Natureza do Doador"
+              "title": "Natureza do Doador",
+              "description": "Regime jurídico aplicável ao responsável pela doação."
             },
             {
               "name": "doador_comodante",
@@ -89,7 +92,8 @@
             {
               "name": "recurso_tjmg_ou_mpmg",
               "type": "string",
-              "title": "Recurso TJMG ou MPMG"
+              "title": "Recurso TJMG ou MPMG",
+              "description": "Recurso originado dos órgãos judiciais estaduais, especificamente o Tribunal de Justiça de Minas Gerais (TJMG) e o Ministério Público de Minas Gerais (MPMG)"
             }
           ]
         },
@@ -102,7 +106,7 @@
           "rows": 301
         }
       },
-      "time": 0.022,
+      "time": 0.026,
       "scope": [
         "hash-count-error",
         "byte-count-error",
