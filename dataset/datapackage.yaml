@@ -16,6 +16,7 @@ resources:
         - name: tipo_instrumento
           type: string
           title: Tipo de Instrumento
+          description: Documento formal que oficializa atos, relações, direitos e obrigações, conferindo segurança jurídica às partes envolvidas na doação.
         - name: ano_instrumento
           title: Ano
           type: string
@@ -27,6 +28,7 @@ resources:
         - name: categoria_valor
           type: string
           title: Categoria do Valor
+          description: Faixa monetária na qual se enquadra o valor total da doação.
         - name: orgao_recebedor
           type: string
           description: Unidade da Administração Direta, Autárquica ou Fundacional que recebe a doação ou o comodato. No contexto do Decreto nº 48.628/2023, pode demandar orientação técnica da DCAP.
@@ -38,6 +40,7 @@ resources:
         - name: natureza_doador
           type: string
           title: Natureza do Doador
+          description: Regime jurídico aplicável ao responsável pela doação.
         - name: doador_comodante
           type: string
           description: Nome da pessoa física ou jurídica que realiza a doação ou concede o comodato.
@@ -61,6 +64,7 @@ resources:
         - name: recurso_tjmg_ou_mpmg
           type: string
           title: Recurso TJMG ou MPMG
+          description: Recurso originado dos órgãos judiciais estaduais, especificamente o Tribunal de Justiça de Minas Gerais (TJMG) e o Ministério Público de Minas Gerais (MPMG)
     scheme: file
     title:  Doações e comodatos - Selo Amigo de Minas Gerais
 title:  Doações e comodatos - Selo Amigo de Minas Gerais
