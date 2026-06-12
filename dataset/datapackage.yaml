@@ -1,5 +1,5 @@
 name: doacoes-comodatos
-owner_org: secretaria-de-estado-de-casa-civil
+owner_org: secretaria-geral-do-estado-de-minas-gerais
 profile: data-package
 resources:
   - description: Listas de doações e comodatos recebidos pelo Governo de Minas Gerais, conforme os arts. 26 e 27 do Decreto nº 48.444/2022 a partir de 2025.
