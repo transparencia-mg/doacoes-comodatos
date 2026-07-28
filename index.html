@@ -302,6 +302,18 @@
         .btn-topo:hover { background-color: #1a3a5c; color: #ffffff; border-color: #1a3a5c; }
 
         /* ============================================================
+           9.5. METADADOS / DICIONÁRIO DE DADOS
+        ============================================================ */
+        .metadata-container { background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.06); overflow: hidden; margin-bottom: 20px; }
+        .metadata-header { background: #20445d; color: white; padding: 12px 16px; font-size: 13px; font-weight: 700; display:flex; align-items:center; }
+        .metadata-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .metadata-table thead th { background-color: #54697b !important; color: white !important; padding: 10px; font-size: 11px; text-transform: uppercase; font-weight: 600; }
+        .metadata-table tbody tr:nth-child(even) { background: #f8fafd; }
+        .metadata-table tbody td { padding: 10px; border-bottom: 1px solid #f0f4f8; vertical-align: top; color: #334155; }
+        .metadata-table code { background: #e2e8f0; color: #0f172a; padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+        .dic-row-highlight { background:#fffbea !important; }
+
+        /* ============================================================
            10. NAVEGAÇÃO (abas)
         ============================================================ */
         .nav-tabs-container { background: transparent; padding: 10px 0; margin-top: 15px; margin-bottom: 15px; width: 100%; }
@@ -507,6 +519,11 @@
                     </button>
                 </li>
                 <li class="nav-item">
+                    <button class="nav-link" id="dicionario-tab-btn" data-bs-toggle="tab" data-bs-target="#dicionario">
+                        <i class="material-icons">menu_book</i>Dicionário de Dados
+                    </button>
+                </li>
+                <li class="nav-item">
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#downloads">
                         <i class="material-icons">download</i>Downloads
                     </button>
@@ -529,6 +546,9 @@
             </div>
             <div class="tab-pane fade" id="consulta" role="tabpanel">
                 <div id="consulta-content"></div>
+            </div>
+            <div class="tab-pane fade" id="dicionario" role="tabpanel">
+                <div id="dicionario-content"></div>
             </div>
             <div class="tab-pane fade" id="downloads" role="tabpanel">
                 <div id="downloads-content"></div>
@@ -877,6 +897,7 @@ async function carregarDados() {
 
         mostrarLoading(false);
         renderVisaoGeral();
+        renderizarDicionario();
         renderDownloads();
 
     } catch (error) {
@@ -976,10 +997,10 @@ function renderVisaoGeral() {
         </div>
         <div class="botoes-abaixo">
             <button class="btn-pesquisa" onclick="aplicarFiltroVisao()">
-                <i class="material-icons">search</i> Pesquisar
+                <i class="material-icons">refresh</i> Atualizar Filtros
             </button>
             <button class="btn-secondary-custom" onclick="limparFiltroVisao()">
-                <i class="material-icons">clear</i> Limpar
+                <i class="material-icons">clear</i> Limpar Filtros
             </button>
         </div>
     </div>
@@ -1357,7 +1378,7 @@ function renderConsulta() {
         </div>
         <div class="consulta-buttons-row">
             <button class="btn-pesquisa" onclick="aplicarFiltroConsulta()">
-                <i class="material-icons">search</i> Pesquisar
+                <i class="material-icons">refresh</i> Atualizar Filtros
             </button>
             <button class="btn-secondary-custom" onclick="limparFiltroConsulta()">
                 <i class="material-icons">clear</i> Limpar Filtros
@@ -1631,6 +1652,75 @@ function exportarModalPDF() {
 }
 
 // ============================================================
+// 8.5 DICIONÁRIO DE DADOS
+// ============================================================
+const DICIONARIO_DOACOES = [
+    { campo:'tipo_instrumento', descricao:'Tipo do instrumento jurídico firmado (Doação, Comodato, etc.)', tipo:'Texto' },
+    { campo:'ano_instrumento', descricao:'Ano de celebração/assinatura do instrumento', tipo:'Numérico' },
+    { campo:'mes_instrumento', descricao:'Mês de celebração/assinatura do instrumento', tipo:'Numérico' },
+    { campo:'categoria_valor', descricao:'Faixa de valor estimado do bem doado ou cedido em comodato', tipo:'Texto' },
+    { campo:'orgao_recebedor', descricao:'Nome do órgão ou entidade da administração estadual que recebeu o bem', tipo:'Texto' },
+    { campo:'codigo_orgao_recebedor', descricao:'Código identificador do órgão recebedor', tipo:'Texto' },
+    { campo:'natureza_doador', descricao:'Natureza do doador ou comodante (Público / Privado)', tipo:'Texto' },
+    { campo:'doador_comodante', descricao:'Nome do doador (na doação) ou do comodante (no comodato)', tipo:'Texto' },
+    { campo:'objeto_descritivo', descricao:'Descrição do bem doado ou cedido em comodato', tipo:'Texto' },
+    { campo:'quantidade_objeto', descricao:'Quantidade de itens do bem doado ou cedido', tipo:'Numérico' },
+    { campo:'vigencia', descricao:'Prazo de vigência do instrumento (aplicável, sobretudo, aos comodatos)', tipo:'Texto' },
+    { campo:'processo_sei', descricao:'Número do processo SEI relacionado ao instrumento', tipo:'Texto' },
+    { campo:'recurso_tjmg_ou_mpmg', descricao:'Indica se o bem tem origem em recurso oriundo do TJMG ou do MPMG', tipo:'Texto (Sim/Não)' }
+];
+
+function renderizarDicionario() {
+    const c = document.getElementById('dicionario-content'); if (!c) return;
+    c.innerHTML = `
+    <div class="filter-container">
+        <div>
+            <h5 style="font-size:15px;font-weight:700;color:#20445d;margin:0;">Dicionário de Dados</h5>
+            <p style="color:#6c757d;font-size:12px;margin:4px 0 0;">Descrição de todas as colunas do dataset de Doações e Comodatos</p>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <input type="text" id="dicBusca" class="form-control" style="height:36px;font-size:12px;max-width:320px;padding:4px 12px;" placeholder="Buscar campo ou descrição..." oninput="buscarDicionario(this.value)">
+            <button class="btn-export" onclick="baixarDicionarioCSV()"><i class="material-icons">description</i> CSV</button>
+            <button class="btn-export" onclick="baixarDicionarioPDF()"><i class="material-icons">print</i> PDF</button>
+        </div>
+    </div>
+    <div class="metadata-container">
+        <div class="metadata-header">
+            <i class="material-icons" style="margin-right:8px;">table_chart</i>Doacoes_e_Comodatos.csv
+            <span style="margin-left:8px;background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:10px;font-size:11px;">${DICIONARIO_DOACOES.length} campos</span>
+            <a href="https://github.com/transparencia-mg/casa_civil_doacoes-comodatos" target="_blank" style="margin-left:auto;color:rgba(255,255,255,0.85);font-size:11px;display:flex;align-items:center;gap:3px;text-decoration:none;">
+                <i class="material-icons" style="font-size:14px;">open_in_new</i> Ver no GitHub
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="metadata-table">
+                <thead><tr><th>Campo</th><th>Descrição</th><th>Tipo</th></tr></thead>
+                <tbody>
+                    ${DICIONARIO_DOACOES.map(row => `<tr class="dic-linha">
+                        <td><code>${row.campo}</code></td>
+                        <td>${row.descricao}</td>
+                        <td><span style="background:#e2e8f0;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;color:#475569;">${row.tipo}</span></td>
+                    </tr>`).join('')}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:12px;">
+        <button class="btn-topo" onclick="voltarAoTopo()"><i class="material-icons">arrow_upward</i> Voltar ao topo</button>
+    </div>`;
+    setTimeout(iframeUpdateHeight, 200);
+}
+
+function buscarDicionario(termo) {
+    const t = (termo || '').toLowerCase().trim();
+    document.querySelectorAll('.dic-linha').forEach(row => {
+        const match = !t || row.textContent.toLowerCase().includes(t);
+        row.style.display = match ? '' : 'none';
+        row.classList.toggle('dic-row-highlight', !!t && match);
+    });
+}
+
+// ============================================================
 // 9. DOWNLOADS
 // ============================================================
 function renderDownloads() {
@@ -1647,39 +1737,6 @@ function renderDownloads() {
                 <a href="https://github.com/transparencia-mg/casa_civil_doacoes-comodatos" target="_blank" class="btn-pesquisa">
                     <i class="material-icons">open_in_new</i> Repositório GitHub
                 </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="filter-container">
-        <h5 style="margin-bottom:12px;font-size:15px;">
-            <i class="material-icons" style="vertical-align:middle;margin-right:6px;">info</i>
-            Metadados — Dicionário de Variáveis
-        </h5>
-        <div class="d-flex gap-2 mb-3">
-            <button class="btn-export" onclick="baixarDicionarioCSV()"><i class="material-icons">description</i> CSV</button>
-            <button class="btn-export" onclick="baixarDicionarioPDF()"><i class="material-icons">print</i> PDF</button>
-        </div>
-        <div class="table-container">
-            <div class="table-fixed-header-container">
-                <table class="table table-bordered">
-                    <thead><tr><th>Campo</th><th>Descrição</th><th>Tipo</th></tr></thead>
-                    <tbody>
-                        <tr><td><code>tipo_instrumento</code></td><td>Tipo do instrumento (Doação, Comodato, etc.)</td><td>Texto</td></tr>
-                        <tr><td><code>ano_instrumento</code></td><td>Ano do instrumento</td><td>Numérico</td></tr>
-                        <tr><td><code>mes_instrumento</code></td><td>Mês do instrumento</td><td>Numérico</td></tr>
-                        <tr><td><code>categoria_valor</code></td><td>Faixa de valor estimado do bem</td><td>Texto</td></tr>
-                        <tr><td><code>orgao_recebedor</code></td><td>Nome do órgão que recebeu o bem</td><td>Texto</td></tr>
-                        <tr><td><code>codigo_orgao_recebedor</code></td><td>Código do órgão recebedor</td><td>Texto</td></tr>
-                        <tr><td><code>natureza_doador</code></td><td>Natureza do doador (Público / Privado)</td><td>Texto</td></tr>
-                        <tr><td><code>doador_comodante</code></td><td>Nome do doador ou comodante</td><td>Texto</td></tr>
-                        <tr><td><code>objeto_descritivo</code></td><td>Descrição do bem doado ou cedido</td><td>Texto</td></tr>
-                        <tr><td><code>quantidade_objeto</code></td><td>Quantidade de itens</td><td>Numérico</td></tr>
-                        <tr><td><code>vigencia</code></td><td>Prazo de vigência (para comodatos)</td><td>Texto</td></tr>
-                        <tr><td><code>processo_sei</code></td><td>Número do processo SEI relacionado</td><td>Texto</td></tr>
-                        <tr><td><code>recurso_tjmg_ou_mpmg</code></td><td>Indica se houve recurso oriundo do TJMG ou MPMG</td><td>Texto (Sim/Não)</td></tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>`;
